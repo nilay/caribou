@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180328195854) do
     t.text     "content",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["url"], name: "index_websites_on_url", unique: true, using: :btree
+    t.index ["url"], name: "index_websites_on_url", using: :btree
   end
 
 end
