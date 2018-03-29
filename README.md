@@ -1,25 +1,95 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Small REST API application built using Rails 5 and 'jsonapi-resources' gem
 
-Things you may want to cover:
 
-* Ruby version
+## Ruby version
+	2.3.1
 
-* System dependencies
 
-* Configuration
+## Deployment instructions
+```shell
+bundle
+rails db:create
+rails s 
+```
 
-* Database creation
+## API Endpoints: Get list of all websites
 
-* Database initialization
+#### Request
 
-* How to run the test suite
+```shell
+curl -X GET \
+  http://localhost:3000/websites \
+  -H 'accept: application/vnd.api+json' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/vnd.api+json' 
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Response
+```json
 
-* Deployment instructions
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "websites",
+            "links": {
+                "self": "http://localhost:3000/websites/1"
+            },
+            "attributes": {
+                "url": "http://sun.com",
+                "content": null
+            }
+        },
+        {
+            "id": "2",
+            "type": "websites",
+            "links": {
+                "self": "http://localhost:3000/websites/2"
+            },
+            "attributes": {
+                "url": "http://sun.com",
+                "content": null
+            }
+        }
+    ]    
+}
+
+```
+
+## API Endpoints: Add website
+
+#### Request
+
+```shell
+curl -X POST \
+  http://localhost:3000/websites \
+  -H 'accept: application/vnd.api+json' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/vnd.api+json' \
+  -d '{"data": {"type":"websites", "attributes":{"url":"http://devzila.com"}}}'
+```
+
+#### Response
+```json
+
+{
+    "data": {
+        "id": "6",
+        "type": "websites",
+        "links": {
+            "self": "http://localhost:3000/websites/6"
+        },
+        "attributes": {
+            "url": "http://devzila.com",
+            "content": "DEVZILA SOFTWARE SOLUTIONS®  brochure KISS process Q&A\n          What are the current tools and technology are you working?\n           here here (Email Us) email: info@devzila.com View Larger Map Devzila - 2014"
+        }
+    }
+}
+
+```
+
 
 * ...
 # caribou
