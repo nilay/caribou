@@ -9,7 +9,11 @@ class Website < ApplicationRecord
 
   def set_content
   	# TODO: following task should be done as background job
-  	self.content = ::Scraper.scrap(self.url)
+  	begin
+  		self.content = ::Scraper.scrap(self.url)
+  	rescue Exception => e
+  		self.content = e.message
+  	end	
   end	
 
 
